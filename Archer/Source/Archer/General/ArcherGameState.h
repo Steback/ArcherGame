@@ -10,7 +10,7 @@
  * 
  */
 UCLASS()
-class ARCHER_API AArcherGameState : public AGameState
+class ARCHER_API AArcherGameState : public AGameStateBase
 {
 	GENERATED_BODY()
 	
