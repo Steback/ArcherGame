@@ -1,13 +1,16 @@
 {
 	"FileVersion": 3,
-	"EngineAssociation": "{0004CDE4-08DB-4B4E-F8DF-2D90FF49ED79}",
+	"EngineAssociation": "{82F59579-4BD5-2F8E-ECC9-0A9923E842CC}",
 	"Category": "",
 	"Description": "",
 	"Modules": [
 		{
 			"Name": "Archer",
 			"Type": "Runtime",
-			"LoadingPhase": "Default"
+			"LoadingPhase": "Default",
+			"AdditionalDependencies": [
+				"Engine"
+			]
 		}
 	]
 }
