@@ -16,7 +16,7 @@ void AArcherPlayerController::BeginPlay()
 	Super::BeginPlay();
 	
 	PlayerCharacter = Cast<AArcherPlayerCharacter>(GetPawn());
-	CameraActor = GetWorld()->SpawnActor<AArcherCameraActor>();
+	CameraActor = GetWorld()->SpawnActor<AArcherCameraActor>(CameraActorTemplate);
 	if (CameraActor)
 	{
 		SetViewTargetWithBlend(CameraActor);
@@ -24,8 +24,7 @@ void AArcherPlayerController::BeginPlay()
 	
 	if (CameraActor && PlayerCharacter)
 	{
-		CameraActor->SetActorLocation(PlayerCharacter->GetActorLocation() + (FVector::ZAxisVector * 500.0f));
-		CameraActor->SetActorRotation((PlayerCharacter->GetActorLocation() - CameraActor->GetActorLocation()).Rotation());
+		CameraActor->SetTarget(PlayerCharacter);
 	}
 }
 
@@ -44,7 +43,11 @@ void AArcherPlayerController::MoveForward(float Input)
 {
 	if (PlayerCharacter)
 	{
-		PlayerCharacter->Move(PlayerCharacter->GetActorForwardVector(), Input);
+		PlayerCharacter->Move(FVector::XAxisVector, Input);
+		if (CameraActor)
+		{
+			CameraActor->Update();
+		}
 	}
 }
 
@@ -52,6 +55,10 @@ void AArcherPlayerController::MoveRight(float Input)
 {
 	if (PlayerCharacter)
 	{
-		PlayerCharacter->Move(PlayerCharacter->GetActorRightVector(), Input);
+		PlayerCharacter->Move(FVector::YAxisVector, Input);
+		if (CameraActor)
+		{
+			CameraActor->Update();
+		}
 	}
 }

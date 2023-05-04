@@ -4,6 +4,7 @@
 
 #include "CoreMinimal.h"
 #include "Character/ArcherPawn.h"
+#include "GameFramework/FloatingPawnMovement.h"
 #include "ArcherPlayercharacter.generated.h"
 
 /**
@@ -17,9 +18,11 @@ class ARCHER_API AArcherPlayerCharacter : public AArcherPawn
 public:
 	AArcherPlayerCharacter();
 
-	virtual void BeginPlay() override;;
+	virtual void BeginPlay() override;
 
 	void Move(const FVector& Direction, float Input);
+	
+	FORCEINLINE virtual UPawnMovementComponent* GetMovementComponent() const override { return Movement; }
 	
 	FORCEINLINE class USkeletalMeshComponent* GetMesh() const { return Mesh; }
 	
@@ -33,5 +36,5 @@ private:
 	USkeletalMeshComponent* Mesh;
 	
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, meta=(AllowPrivateAccess="True"))
-	class UFloatingPawnMovement* Movement;
+	UFloatingPawnMovement* Movement;
 };

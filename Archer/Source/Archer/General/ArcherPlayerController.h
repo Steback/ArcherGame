@@ -34,4 +34,7 @@ private:
 	
 	UPROPERTY(Transient, VisibleInstanceOnly)
 	AArcherCameraActor* CameraActor{nullptr};
+
+	UPROPERTY(EditDefaultsOnly)
+	TSubclassOf<AArcherCameraActor> CameraActorTemplate{};
 };

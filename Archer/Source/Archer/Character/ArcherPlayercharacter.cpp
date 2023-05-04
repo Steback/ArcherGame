@@ -33,8 +33,9 @@ void AArcherPlayerCharacter::BeginPlay()
 
 void AArcherPlayerCharacter::Move(const FVector& Direction, float Input)
 {
-	if (GetMovementComponent())
+	if (Movement && Input != 0.0f)
 	{
+		SetActorRotation((Direction * Input).Rotation());
 		AddMovementInput(Direction, Input);
 	}
 }
